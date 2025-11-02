@@ -1,4 +1,5 @@
 from models.Question import Question
+from models.QuestionFrame import QuestionFrame
 from models.RiskProfile import RiskProfile
 from models.TimePreference import TimePreference
 
@@ -126,10 +127,9 @@ def __create_question_description(question: Question) -> str:
     question = f"""Frage Nummer {question.number}: Stell dir vor du hättest ein Vermögen von {question.net_worth} Euro zur Verfügung.
     Es gibt zwei Optionen aus denen du eine Option wählen musst.
     
-    Option A: Einen sicheren {"Gewinn" if question.question_frame is 1 else "Verlust"} von {question.safe_option} Euro.
+    Option A: Einen sicheren {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von {question.safe_option} Euro.
     
     Option B: Mit einer zufälligen Wahrscheinlichkeit von 50% einen {"Gewinn" if question.question_frame is 1 else "Verlust"} von {question.risk_option} Euro.
-              oder einen {"Gewinn" if question.question_frame is 1 else "Verlust"} von 0 Euro mit ebenfalls 50%.
-    """
+              oder einen {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von 0 Euro mit ebenfalls 50% Wahrscheinlichkeit."""
 
     return question
