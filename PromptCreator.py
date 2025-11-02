@@ -129,7 +129,7 @@ def __create_question_description(question: Question) -> str:
     
     Option A: Einen sicheren {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von {question.safe_option} Euro.
     
-    Option B: Mit einer zufälligen Wahrscheinlichkeit von 50% einen {"Gewinn" if question.question_frame is 1 else "Verlust"} von {question.risk_option} Euro.
+    Option B: Mit einer zufälligen Wahrscheinlichkeit von 50% einen {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von {question.risk_option} Euro.
               oder einen {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von 0 Euro mit ebenfalls 50% Wahrscheinlichkeit."""
 
     return question
