@@ -32,7 +32,7 @@ def create_question_prompt(risk_profile: RiskProfile, questions: list[Question])
     
     Du bist eine Person, die {risk_profile.age} Jahre alt ist und als {risk_profile.profession} tätig ist.
     Du bist aktuell {risk_profile.marital_status}. {__create_decision_style_description(risk_profile.decision_style)}
-    {__create_information_style_description(risk_profile.information_style)}
+    {__create_information_style_description(risk_profile.information_style)} {__create_time_preference_description(risk_profile.time_preference)}
     
     Nachfolgend sind die Fragen:
     """
@@ -108,10 +108,10 @@ def __create_time_preference_description(time_preference: TimePreference) -> str
     """
 
     match time_preference:
-        case 1:
+        case TimePreference.NOW:
             return """Bezüglich deiner zeitlichen Präferenz bei Entscheidungen würdest du lieber einen sofortigen
             Gewinn bevorzugen, als einen höheren Gewinn in der Zukunft. Du bist also tendenziell eher ungeduldig und impulsiv."""
-        case 2:
+        case TimePreference.LATER:
             return """Bezüglich deiner zeitlichen Präferenz bei Entscheidungen würdest du lieber auf einen höheren Gewinn in der Zukunft
             warten als sofort einen Gewinn zu nehmen, wenn du die Wahl hättest. Du bist also tendenziell eher geduldig und optimistisch."""
         case _:
