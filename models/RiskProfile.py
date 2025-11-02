@@ -1,3 +1,6 @@
+from models.TimePreference import TimePreference
+
+
 class RiskProfile:
     def __init__(self,
                  age: int,
@@ -5,7 +8,7 @@ class RiskProfile:
                  marital_status: str,
                  decision_style: int,
                  information_style: int,
-                 time_preference: str):
+                 time_preference: TimePreference):
         """
         Initializes an instance of the class
         :param age: The age of the test person
