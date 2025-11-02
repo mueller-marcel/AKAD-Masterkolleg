@@ -42,7 +42,8 @@ def create_question_prompt(risk_profile: RiskProfile, questions: list[Question])
         prompt += f"\n{__create_question_description(question)}"
 
     # Append the instructions for the output format to the prompt
-    prompt += "Bitte gib die Antwort zu den Fragen zusammen mit der Nummer der Frage aus, sodass ich deine Antworten zuordnen kann."
+    prompt += """
+    Bitte gib die Antwort zu den Fragen zusammen mit der Nummer der Frage aus, sodass ich deine Antworten zuordnen kann."""
 
     return prompt
 
@@ -130,6 +131,7 @@ def __create_question_description(question: Question) -> str:
     Option A: Einen sicheren {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von {question.safe_option} Euro.
     
     Option B: Mit einer zufälligen Wahrscheinlichkeit von 50% einen {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von {question.risk_option} Euro.
-              oder einen {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von 0 Euro mit ebenfalls 50% Wahrscheinlichkeit."""
+              oder einen {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von 0 Euro mit ebenfalls 50% Wahrscheinlichkeit.
+"""
 
     return question
