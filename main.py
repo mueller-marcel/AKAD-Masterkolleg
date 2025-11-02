@@ -7,9 +7,9 @@ from models.RiskProfile import RiskProfile
 from models.TimePreference import TimePreference
 
 # Initialize the OpenAI client and define parameters
-# client = OpenAI()
-# MODEL = "gpt-5"
-# TEMPERATURE = 0.5
+client = OpenAI()
+MODEL = "gpt-5"
+TEMPERATURE = 0.5
 
 # Define the risk profile
 risk_profile = RiskProfile(
