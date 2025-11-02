@@ -8,6 +8,7 @@ class Question:
         :param safe_option: The amount of money for the safe option
         :param risk_option: The amount of money for the risky option
         """
+
         self.net_worth = net_worth
         self.safe_option = safe_option
         self.risk_option = risk_option

@@ -15,6 +15,7 @@ class RiskProfile:
         :param information_style: The information style of the test person
         :param time_preference: The time preference of the test person
         """
+
         self.age = age
         self.profession = profession
         self.marital_status = marital_status
