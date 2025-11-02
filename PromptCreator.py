@@ -3,6 +3,14 @@ from models.RiskProfile import RiskProfile
 from models.TimePreference import TimePreference
 
 
+def create_explanation_prompt() -> str:
+    """
+    Create the explanation prompt for the behavior experiment
+    :return: The prompt to explain the behavior experiment in the German language
+    """
+
+    return str()
+
 def create_question_prompt(risk_profile: RiskProfile, questions: list[Question]) -> str:
     """
     Creates the prompt to ask a question of the behavior experiment using the given risk profile
@@ -115,7 +123,7 @@ def __create_question_description(question: Question) -> str:
     :return: The string description of the question
     """
 
-    question = f"""Frage {question.name}: Stell dir vor du hättest ein Vermögen von {question.net_worth} Euro zur Verfügung.
+    question = f"""Frage Nummer {question.number}: Stell dir vor du hättest ein Vermögen von {question.net_worth} Euro zur Verfügung.
     Es gibt zwei Optionen aus denen du eine Option wählen musst.
     
     Option A: Einen sicheren {"Gewinn" if question.question_frame is 1 else "Verlust"} von {question.safe_option} Euro.

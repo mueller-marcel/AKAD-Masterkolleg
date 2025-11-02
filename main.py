@@ -1,48 +1,107 @@
 from openai import OpenAI
+from openai.types.chat import ChatCompletionSystemMessageParam, ChatCompletionUserMessageParam
+from PromptCreator import create_explanation_prompt, create_question_prompt
+from models.Question import Question
+from models.QuestionFrame import QuestionFrame
+from models.RiskProfile import RiskProfile
+from models.TimePreference import TimePreference
 
 # Initialize the OpenAI client and define parameters
 client = OpenAI()
 MODEL = "gpt-5"
 TEMPERATURE = 0.5
 
-# Prompt templates
-explanation_prompt = """Du nimmst an einem wissenschaftlichen Verhaltensexperiment teil. 
-Bitte verhalte dich wie eine menschliche Versuchsperson, die Entscheidungen unter Risiko trifft.
+# Define the risk profile
+risk_profile = RiskProfile(
+    age=27,
+    profession="Programmierer",
+    marital_status="verheiratet",
+    decision_style=1,
+    information_style=1,
+    time_preference=TimePreference.LATER,
+)
 
-Ablauf:
-1. Zuerst erhältst du Fragen zu deinem Risikoprofil (Demografie, Entscheidungsstil, Informationsverhalten, Zeitpräferenz).
-2. Danach werden dir Entscheidungsaufgaben präsentiert, bei denen du zwischen Option A (sicher) und Option B (riskant) wählen musst.
+# Define the questions
+questions = [
+    Question(
+        number=1,
+        net_worth= 50000,
+        safe_option= 30000,
+        risk_option= 60000,
+        question_frame=QuestionFrame.WIN,
+    ),
+    Question(
+        number=2,
+        net_worth=300000,
+        safe_option=40000,
+        risk_option=80000,
+        question_frame=QuestionFrame.WIN,
+    ),
+    Question(
+        number=3,
+        net_worth=75000,
+        safe_option=30000,
+        risk_option=60000,
+        question_frame=QuestionFrame.WIN,
+    ),
+    Question(
+        number=5,
+        net_worth=200000,
+        safe_option=50000,
+        risk_option=100000,
+        question_frame=QuestionFrame.WIN,
+    ),
+    Question(
+        number=6,
+        net_worth=50000,
+        safe_option=30000,
+        risk_option=60000,
+        question_frame=QuestionFrame.LOSS,
+    ),
+    Question(
+        number=7,
+        net_worth=300000,
+        safe_option=40000,
+        risk_option=80000,
+        question_frame=QuestionFrame.LOSS,
+    ),
+    Question(
+        number=8,
+        net_worth=75000,
+        safe_option=30000,
+        risk_option=60000,
+        question_frame=QuestionFrame.LOSS,
+    ),
+    Question(
+        number=9,
+        net_worth=200000,
+        safe_option=50000,
+        risk_option=100000,
+        question_frame=QuestionFrame.LOSS,
+    ),
+]
 
-Wichtige Regeln:
-- Es gibt keine richtigen oder falschen Antworten.
-- Antworte jeweils so, wie du spontan entscheiden würdest.
-- Handle konsistent und ohne Meta-Kommentare.
-- Begründe deine Antworten nicht.
-- Antworte nur direkt auf die Fragen, ohne zusätzliche Erläuterungen.
+# Create the prompt to set up the model behavior
+explanation_prompt = create_explanation_prompt()
 
-Sobald du bereit bist, schreibe: „Bereit“."""
+# Create the prompt for the question
+question_prompt = create_question_prompt(
+    risk_profile=risk_profile,
+    questions=questions,
+)
 
-risk_profile = {
-    "Alter": 34,
-    "Beruf/Tätigkeit": "Softwareentwickler",
-    "Lebenssituation": "in Partnerschaft",
-    "Entscheidungsstil_1_7": 5,
-    "Informationsverhalten_1_7": 6,
-    "Zeitpräferenz": "später"
-}
+# Create the chat history using the explanation prompt as a system message and the questions as a user message
+messages = [
+    ChatCompletionSystemMessageParam(role="system", content=explanation_prompt),
+    ChatCompletionUserMessageParam(role="user", content=question_prompt),
+]
 
-def ask(prompt: str, temperature: float = TEMPERATURE) -> str:
-    """
-    Asks the model a question.
-    :param prompt: The question to ask
-    :param temperature: The temperature to use
-    :return: The response of the model
-    """
+# Send the question to the model
+response = client.chat.completions.create(
+    model=MODEL,
+    messages=messages,
+    seed=42,
+    temperature=TEMPERATURE,
+)
 
-    response = client.responses.create(
-        model=MODEL,
-        input=prompt,
-        temperature=temperature
-    )
-
-    return response.output_text
+print(response.choices[0].message.content)

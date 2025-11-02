@@ -1,5 +1,5 @@
 from enum import Enum
 
-class QuestionType(Enum):
+class QuestionFrame(Enum):
     WIN = 1
     LOSS = 2
