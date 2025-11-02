@@ -97,11 +97,11 @@ messages = [
 ]
 
 # Send the question to the model
-# response = client.chat.completions.create(
-#     model=MODEL,
-#     messages=messages,
-#     seed=42,
-#     temperature=TEMPERATURE,
-# )
-#
-# print(response.choices[0].message.content)
+response = client.chat.completions.create(
+    model=MODEL,
+    messages=messages,
+    seed=42,
+    temperature=TEMPERATURE,
+)
+
+print(response.choices[0].message.content)
