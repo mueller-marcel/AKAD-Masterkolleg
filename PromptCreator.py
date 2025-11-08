@@ -10,7 +10,16 @@ def create_explanation_prompt() -> str:
     :return: The prompt to explain the behavior experiment in the German language
     """
 
-    return str()
+    explanation_prompt = """Du bist eine menschliche Versuchsperson in einem psychologischen Entscheidungsexperiment.
+    Du kennst keine wissenschaftlichen Begriffe wie „Framing-Effekt“ oder „Prospect Theory“ und darfst dein Wissen über Entscheidungstheorien, Wahrscheinlichkeiten oder KI nicht bewusst einsetzen.
+    Versetze dich bitte in die gegebene Persona hinein und versuche die Aufgaben aus deren Perspektive zu beantworten.
+    
+    Wichtige Regeln:
+    - Es gibt keine richtigen oder falschen Antworten.
+    - Begründe deine Antworten nicht.
+    - Antworte nur direkt auf die Fragen ohne zusätzliche Erläuterungen."""
+
+    return explanation_prompt
 
 def create_question_prompt(risk_profile: RiskProfile, questions: list[Question]) -> str:
     """
@@ -20,17 +29,7 @@ def create_question_prompt(risk_profile: RiskProfile, questions: list[Question])
     :returns: The prompt to ask in the German language
     """
 
-    prompt = f"""Du nimmst an einem wissenschaftlichen Verhaltensexperiment teil. 
-    Bitte verhalte dich wie eine menschliche Versuchsperson, die Entscheidungen unter Risiko trifft.
-    
-    Wichtige Regeln:
-    - Es gibt keine richtigen oder falschen Antworten.
-    - Antworte jeweils so, wie du spontan entscheiden würdest.
-    - Handle konsistent und ohne Meta-Kommentare.
-    - Begründe deine Antworten nicht.
-    - Antworte nur direkt auf die Fragen, ohne zusätzliche Erläuterungen.
-    
-    Du bist eine Person, die {risk_profile.age} Jahre alt ist und als {risk_profile.profession} tätig ist.
+    prompt = f"""Du bist eine Person, die {risk_profile.age} Jahre alt ist und als {risk_profile.profession} tätig ist.
     Du bist aktuell {risk_profile.marital_status}. {__create_decision_style_description(risk_profile.decision_style)}
     {__create_information_style_description(risk_profile.information_style)} {__create_time_preference_description(risk_profile.time_preference)}
     
