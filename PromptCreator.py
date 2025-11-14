@@ -126,7 +126,7 @@ def __create_question_description(question: Question) -> str:
     :return: The string description of the question
     """
 
-    question = f"""Frage Nummer {question.number}: Stell dir vor du hättest ein Vermögen von {question.net_worth} Euro zur Verfügung.
+    question = f"""Frage Nummer {question.id}: Stell dir vor du hättest ein Vermögen von {question.net_worth} Euro zur Verfügung.
     Es gibt zwei Optionen aus denen du eine Option wählen musst.
     
     Option A: Einen sicheren {"Gewinn" if question.question_frame is QuestionFrame.WIN else "Verlust"} von {question.safe_option} Euro.
