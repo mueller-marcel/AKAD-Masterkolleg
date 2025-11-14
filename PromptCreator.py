@@ -113,6 +113,8 @@ def __create_time_preference_description(time_preference: TimePreference) -> str
         case TimePreference.LATER:
             return """Bezüglich deiner zeitlichen Präferenz bei Entscheidungen würdest du lieber auf einen höheren Gewinn in der Zukunft
             warten als sofort einen Gewinn zu nehmen, wenn du die Wahl hättest. Du bist also tendenziell eher geduldig und optimistisch."""
+        case TimePreference.INSECURE:
+            return """Bezüglich deiner zeitlichen Präferenz bei Entscheidungen bist du dir unsicher, ob du einen sofortigen Gewinn bevorzugst oder einen höheren Gewinn in der Zukunft."""
         case _:
             raise ValueError("Invalid time preference")
 

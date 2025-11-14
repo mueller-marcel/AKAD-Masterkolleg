@@ -2,7 +2,7 @@ from models.QuestionFrame import QuestionFrame
 
 
 class Question:
-    def __init__(self, number: int, net_worth: int, safe_option: int, risk_option: int, question_frame: QuestionFrame):
+    def __init__(self, number: str, net_worth: int, safe_option: int, risk_option: int, question_frame: QuestionFrame):
         """
         Initializes an instance of the class
         :param number: The question number
