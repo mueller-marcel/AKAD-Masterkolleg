@@ -1,3 +1,5 @@
+import os
+
 from openai import OpenAI
 from openai.types.chat import ChatCompletionSystemMessageParam, ChatCompletionUserMessageParam
 from PromptCreator import create_explanation_prompt, create_question_prompt
@@ -7,6 +9,7 @@ from models.RiskProfile import RiskProfile
 from models.TimePreference import TimePreference
 
 # Initialize the OpenAI client and define parameters
+os.environ["OPENAI_API_KEY"] = "<API KEY>"
 client = OpenAI()
 MODEL = "gpt-5"
 TEMPERATURE = 0.5
