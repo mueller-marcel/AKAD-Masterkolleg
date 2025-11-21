@@ -37,14 +37,14 @@ Die Temperatur kann mit der Konstante `TEMPERATURE` konfiguriert werden. Es sind
 Das Risikoprofil oder Persona kann in der Datei `main.py` konfiguriert werden. Hierfür steht die Klasse `RiskProfile` zur Verfügung.
 Die Klassenvariablen dieser Klasse enthalten bilden die Parametrisierung des Risikoprofils analog zum Fragebogen ab.
 
-| Parameter | Wertebereich | Bedeutung |
-|-----------|--------------|-----------|
-| age       | x > 0        | Alter der Testperson |
-| profession | Freitext | Beruf der Testperson |
-| maritial_status | "alleinlebend", "in Partnerschaft", "verheiratet", "mit Familie" | Beziehungsstatus der Testperson |
-| decision_style | 1-7 | Entscheidungsstil der Testperson (Erklärung der numerischen Werte im Fragebogen auf Seite 4) |
-| information_style | 1-7 | Informationsstil der Testperson (Erklärung der numerischen Werte im Fragebogen auf Seite 4) |
-| time_preference | "INSECURE", "NOW", "LATER" | Zeitpräferenz der Testperson |
+| Parameter         | Wertebereich                                                     | Bedeutung                                                                                    |
+| ----------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| age               | x > 0                                                            | Alter der Testperson                                                                         |
+| profession        | Freitext                                                         | Beruf der Testperson                                                                         |
+| maritial_status   | "alleinlebend", "in Partnerschaft", "verheiratet", "mit Familie" | Beziehungsstatus der Testperson                                                              |
+| decision_style    | 1-7                                                              | Entscheidungsstil der Testperson (Erklärung der numerischen Werte im Fragebogen auf Seite 4) |
+| information_style | 1-7                                                              | Informationsstil der Testperson (Erklärung der numerischen Werte im Fragebogen auf Seite 4)  |
+| time_preference   | "INSECURE", "NOW", "LATER"                                       | Zeitpräferenz der Testperson                                                                 |
 
 ## 📚 Bibliotheken
 
