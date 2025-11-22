@@ -6,7 +6,7 @@ Dieses Repository enthält den Code für die Prüfungsaufgabe des Moduls ROB84. 
 
 1. Repository klonen
 ```bash
-   git clone https://github.com/mueller-marcel/AKAD-Masterkolleg.git
+git clone https://github.com/mueller-marcel/AKAD-Masterkolleg.git
 ```
 
 2. Abhängigkeiten installieren
